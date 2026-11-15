@@ -1,0 +1,61 @@
+course_id,titulo,categoria,nivel,duracion_horas
+C001,Análisis de datos básico 1,analisis_datos,principiante,6
+C002,Análisis de datos básico 2,analisis_datos,principiante,5
+C003,Análisis de datos básico 3,analisis_datos,principiante,6
+C004,Análisis de datos básico 4,analisis_datos,principiante,6
+C005,Análisis de datos básico 5,analisis_datos,principiante,4
+C006,Análisis de datos intermedio 1,analisis_datos,intermedio,9
+C007,Análisis de datos intermedio 2,analisis_datos,intermedio,14
+C008,Análisis de datos intermedio 3,analisis_datos,intermedio,14
+C009,Análisis de datos intermedio 4,analisis_datos,intermedio,6
+C010,Análisis de datos avanzado 1,analisis_datos,avanzado,17
+C011,Análisis de datos avanzado 2,analisis_datos,avanzado,15
+C012,Análisis de datos avanzado 3,analisis_datos,avanzado,10
+C013,Machine learning básico 1,machine_learning,principiante,6
+C014,Machine learning básico 2,machine_learning,principiante,2
+C015,Machine learning básico 3,machine_learning,principiante,4
+C016,Machine learning básico 4,machine_learning,principiante,6
+C017,Machine learning básico 5,machine_learning,principiante,7
+C018,Machine learning intermedio 1,machine_learning,intermedio,9
+C019,Machine learning intermedio 2,machine_learning,intermedio,13
+C020,Machine learning intermedio 3,machine_learning,intermedio,13
+C021,Machine learning intermedio 4,machine_learning,intermedio,10
+C022,Machine learning avanzado 1,machine_learning,avanzado,11
+C023,Machine learning avanzado 2,machine_learning,avanzado,17
+C024,Machine learning avanzado 3,machine_learning,avanzado,10
+C025,SQL básico 1,sql_bases_datos,principiante,8
+C026,SQL básico 2,sql_bases_datos,principiante,4
+C027,SQL básico 3,sql_bases_datos,principiante,7
+C028,SQL básico 4,sql_bases_datos,principiante,7
+C029,SQL básico 5,sql_bases_datos,principiante,5
+C030,SQL intermedio 1,sql_bases_datos,intermedio,14
+C031,SQL intermedio 2,sql_bases_datos,intermedio,13
+C032,SQL intermedio 3,sql_bases_datos,intermedio,13
+C033,SQL intermedio 4,sql_bases_datos,intermedio,6
+C034,SQL avanzado 1,sql_bases_datos,avanzado,15
+C035,SQL avanzado 2,sql_bases_datos,avanzado,20
+C036,SQL avanzado 3,sql_bases_datos,avanzado,18
+C037,Python básico 1,python,principiante,5
+C038,Python básico 2,python,principiante,2
+C039,Python básico 3,python,principiante,3
+C040,Python básico 4,python,principiante,6
+C041,Python básico 5,python,principiante,6
+C042,Python intermedio 1,python,intermedio,14
+C043,Python intermedio 2,python,intermedio,6
+C044,Python intermedio 3,python,intermedio,9
+C045,Python intermedio 4,python,intermedio,8
+C046,Python avanzado 1,python,avanzado,20
+C047,Python avanzado 2,python,avanzado,11
+C048,Python avanzado 3,python,avanzado,12
+C049,Visualización básico 1,visualizacion,principiante,4
+C050,Visualización básico 2,visualizacion,principiante,2
+C051,Visualización básico 3,visualizacion,principiante,6
+C052,Visualización básico 4,visualizacion,principiante,5
+C053,Visualización básico 5,visualizacion,principiante,5
+C054,Visualización intermedio 1,visualizacion,intermedio,14
+C055,Visualización intermedio 2,visualizacion,intermedio,9
+C056,Visualización intermedio 3,visualizacion,intermedio,8
+C057,Visualización intermedio 4,visualizacion,intermedio,9
+C058,Visualización avanzado 1,visualizacion,avanzado,18
+C059,Visualización avanzado 2,visualizacion,avanzado,15
+C060,Visualización avanzado 3,visualizacion,avanzado,11
