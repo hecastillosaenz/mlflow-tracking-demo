@@ -1,0 +1,7 @@
+mlflow==3.17.2
+scikit-learn==1.8.0
+pandas==2.3.3
+numpy==2.3.5
+matplotlib==3.10.9
+notebook==7.6.5
+ipykernel==6.31.0

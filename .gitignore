@@ -1,0 +1,26 @@
+# MLflow (artefactos y bases locales de prueba)
+mlruns/
+mlartifacts/
+mlflow.db
+*.db
+
+# Entornos y secretos
+.env
+.env.*
+!.env.example
+.venv/
+venv/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Sistema e IDE
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
