@@ -269,3 +269,24 @@ El DE pidió corridas y tracking; el registry no entra en ese pedido y es la par
 | Versión de MLflow del servidor del DE | DE, vía el autor | Fijar `mlflow` en `requirements.txt` y revisar la API de `log_model` |
 | Cómo maneja el servidor los artefactos (proxy o escritura directa) | DE | Si no se proxean, `log_model` y `log_artifact` pueden fallar desde el cliente aunque las métricas sí se registren |
 | Acceso del DE al repo privado | Autor | Necesario antes de entregar |
+
+## 13. Decisiones de implementación (notebook terminado, 2026-11-18)
+
+Decisiones tomadas al escribir el notebook que no estaban fijadas en las secciones anteriores.
+
+| Tema | Decisión | Justificación |
+|---|---|---|
+| Entrada de los modelos | Los 3 modelos reciben el **mismo DataFrame crudo** (`course_id` + 6 categóricas + 4 numéricas); cada `Pipeline` elige sus columnas | La sección 6 carga cualquier ganador y le pasa la misma entrada. La signature es idéntica en los 3 runs |
+| `course_id` | Solo lo usa popularidad. `logreg` y `hgb` **no** lo reciben | "Mismas variables, salvo popularidad". Con `course_id`, los otros dos modelos también aprenderían popularidad por curso y se mezclarían los roles |
+| Numéricas como `float` | `horas_semana`, `duracion_horas`, `area_coincide` y `brecha_nivel` se convierten a `float` | Evita el aviso de MLflow sobre columnas enteras en la signature |
+| Preprocesamiento | `logreg`: one-hot + `StandardScaler`. `hgb`: `OrdinalEncoder` + soporte categórico nativo | Cada modelo recibe la codificación que le conviene, siempre dentro del `Pipeline` |
+| `hgb` sin `early_stopping` | `early_stopping=False`, `max_iter=300` | Con más de 10,000 filas, scikit-learn activa por defecto una validación interna; se apaga para respetar D4 ("sin validación") |
+| Serialización | `skops` (por defecto en MLflow 3.x) con `skops_trusted_types` explícitos solo para `hgb` | Se mantiene el formato seguro. **Desvío del backlog:** T-010 proponía `cloudpickle`; se descartó porque bastaba con declarar 3 tipos internos de scikit-learn |
+| Importancia de variables | Importancia por permutación (caída de ROC AUC, 5 repeticiones) sobre las variables crudas | Es el mismo método para `logreg` y `hgb` (que no tiene `feature_importances_`), y se lee en términos de columnas originales, no codificadas |
+| Selección del ganador | `search_runs` filtrando `tags.mlflow.parentRunId`; luego se reabre el run padre para registrar `best_ndcg_at_5`, `best_model` y `best_run_id` | El ganador sale de lo registrado en el servidor, no de la memoria del notebook |
+| Recomendaciones (sección 6) | Se puntúan los **60 cursos** del catálogo; la columna `mostrado` marca los 20 expuestos | Muestra el uso real. Antes, se verifica que el modelo cargado reproduce las predicciones del entrenado (tolerancia `1e-12`) |
+| Run de reproducibilidad | Run aparte (fuera del padre) `reproducibility-check-<modelo>`, con tags `reproducibility_check=true` y `reproduces_run_id`. Se comparan las **5** métricas contra las del servidor, con tolerancia `1e-9` | Así no compite en la comparación y se mantiene "1 padre + 3 hijos" |
+| Configuración | El notebook lee `.env` (sin pisar variables ya definidas); en el repo se versiona `.env.example` | No depende de cómo el editor o la terminal carguen las variables (en VS Code el kernel no veía la variable) |
+| Datos con outputs | El notebook se versiona con los outputs de la prueba local | Evidencia para el DE de una ejecución completa sin errores |
+
+**Resultado de la prueba local** (MLflow 3.17.2, scikit-learn 1.8.0, SQLite; 39 s): NDCG@5 = 0.452 (popularidad), 0.556 (logreg) y 0.577 (hgb, ganador). Se cumplen las hipótesis de la sección 6 (orden de modelos; NDCG@5 y AUC coinciden).
